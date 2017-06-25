@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="citPOINT.IssueApp.Common.IssueAppViewTypes">
+    <Position X="3.5" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelHelpers\IssueAppViewTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.IssueApp.Common.IssueAppViewModelTypes">
+    <Position X="3.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelHelpers\IssueAppViewModelTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.IssueApp.Common.IssueAppConfigurations">
+    <Position X="3.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="citPOINT.IssueApp.Common.IIssueHistoryModel">
+    <Position X="0.75" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAABAgAQAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\IIssueHistoryModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

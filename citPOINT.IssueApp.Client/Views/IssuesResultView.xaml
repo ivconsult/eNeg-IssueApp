@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="citPOINT.IssueApp.Client.IssuesResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+    <UserControl.Resources>
+        <telerik:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
+        <Grid x:Name="LayoutRoot"
+          Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto"
+                           MinHeight="100" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="2"
+                BorderBrush="White"
+                Background="White"
+                CornerRadius="30"
+                Grid.Column="0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="10,0"
+                        Height="30">
+
+                <TextBox Name="uxtxtSearchKey"
+                         Width="200"
+                         Padding="4"
+                         Text="{Binding CurrentKeyWord ,Mode=TwoWay,FallbackValue='as'}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyDown">
+                            <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                Command="{Binding SearchByEnterKeyDownCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+
+                <telerik:RadButton Height="30"
+                                   Width="25"
+                                   Name="uximgSearch">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding SearchCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <telerik:RadButton.Content>
+                        <Image Source="/citPOINT.IssueApp.Client;component/Images/search-icon.png"
+                               Width="20"
+                               Height="20"
+                               Stretch="UniformToFill" />
+                    </telerik:RadButton.Content>
+                </telerik:RadButton>
+
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="1"
+                   Name="uxlblMatchedNegotiationNo"
+                   Text="{Binding MatchedNegotiationCount,StringFormat='There were \{0\} related negotiations found',FallbackValue='There were \{0\} related negotiations found'}"
+                   TextWrapping="Wrap"
+                   TextAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="10,0"
+                   FontWeight="Bold" />
+
+        <telerik:RadGridView Grid.Row="2"
+                             Width="Auto"
+                             HorizontalAlignment="Left"
+                             AutoGenerateColumns="False"
+                             GridLinesVisibility="Horizontal"
+                             IsFilteringAllowed="False"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding IssueHistorySource}"
+                             Margin="10,0"
+                             Name="uxPhasesGridView"
+                             ReorderColumnsMode="None"
+                             ScrollMode="Deferred"
+                             ShowGroupPanel="False"
+                             ShowInsertRow="False"
+                             ShowGroupFooters="False"
+                             ShowColumnHeaders="True"
+                             ShowColumnFooters="False"
+                             RowIndicatorVisibility="Collapsed">
+            <telerik:RadGridView.Columns>
+
+                <telerik:GridViewColumn UniqueName="Rank"
+                                        Header="Rank"
+                                        HeaderTextAlignment="Center"
+                                        Width="50">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Rank}"
+                                       TextWrapping="Wrap"
+                                       Name="uxlblRank"
+                                       TextAlignment="Center" />
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+
+                <telerik:GridViewColumn UniqueName="IssueName"
+                                        Header="Issue"
+                                        HeaderTextAlignment="Center"
+                                        Width="Auto"
+                                        MinWidth="100"
+                                        MaxWidth="400">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding IssueName}"
+                                       TextWrapping="Wrap"
+                                       Name="uxlblIssueName" />
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+
+                <telerik:GridViewColumn UniqueName="TimesUsed"
+                                        Header="Used"
+                                        HeaderTextAlignment="Center"
+                                        Width="50">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TimesUsed}"
+                                       TextWrapping="Wrap"
+                                       Name="uxlblTimesUsed"
+                                       TextAlignment="Right" />
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+
+                <telerik:GridViewColumn UniqueName="AverageScore"
+                                        Header="Avg Score"
+                                        HeaderTextAlignment="Left"
+                                        Width="*">
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left">
+                                <TextBlock Text="{Binding AverageScore,StringFormat='#0.00'}"
+                                           TextWrapping="Wrap"
+                                           Width="50"
+                                           Name="uxlblAvgScore"
+                                           TextAlignment="Right" />
+                                <TextBlock Text="%"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Right" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <TextBlock Grid.Row="3"
+                   Name="uxlblCounterpartsNo"
+                   Text="{Binding CounterpartCount,StringFormat='Negotiate with at least \{0\} couterparts.',FallbackValue='Negotiate with at least \{0\} couterparts.'}"
+                   Visibility="{Binding HasCounterpart,Converter={StaticResource booleanToVisibilityConverter}}"
+                   TextWrapping="Wrap"
+                   TextAlignment="Left"
+                   Margin="10,0"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                 />
+
+    </Grid>
+</UserControl>
