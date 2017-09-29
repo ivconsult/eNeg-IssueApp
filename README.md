@@ -1,7 +1,5 @@
 # eNeg-IssueApp
 
-# eNeg IssueApp
-
 ## Description
 
 With IssueApp the user can search his knowledge base inside eNeg for negotiations with similar content and receives a list with negotiation issues (=points that are negotiated during the negotiation and are important for decision making). The users is supported in chosing the right issues in the negotiation.
